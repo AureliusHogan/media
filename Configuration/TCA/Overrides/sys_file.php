@@ -17,6 +17,7 @@ $tca = [
             ],
         ],
         'number_of_references' => [
+            'label' => 'LLL:EXT:media/Resources/Private/Language/locallang.xlf:number_of_references',
             'config' => [
                 'type' => 'input',
                 'size' => 255,
@@ -37,15 +38,30 @@ $tca = [
     'grid' => [
         'excluded_fields' => 'number_of_references, missing',
         'facets' => [
-            'metadata.title',
-            'metadata.categories',
-            'name',
+            new \Fab\Vidi\Facet\StandardFacet(
+                'metadata.title',
+                'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.title'
+                ),
+            new \Fab\Vidi\Facet\StandardFacet(
+                'metadata.categories',
+                'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.categories'
+                ),
+            new \Fab\Vidi\Facet\StandardFacet(
+                'name',
+                'LLL:EXT:media/Resources/Private/Language/locallang.xlf:sys_file.file_name'
+                ),
             new \Fab\Vidi\Facet\StandardFacet(
                 'extension',
                 'LLL:EXT:media/Resources/Private/Language/locallang.xlf:sys_file.extension'
             ),
-            'metadata.description',
-            'identifier',
+            new \Fab\Vidi\Facet\StandardFacet(
+                'metadata.description',
+                'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.description'
+                ),
+            new \Fab\Vidi\Facet\StandardFacet(
+                'identifier',
+                'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.file.identifier'
+                ),
             new \Fab\Vidi\Facet\StandardFacet(
                 'number_of_references',
                 'LLL:EXT:media/Resources/Private/Language/locallang.xlf:usage',
@@ -76,6 +92,7 @@ $tca = [
             ],
             'identifier' => [
                 'visible' => false,
+                'label' => 'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.file.identifier',
             ],
             'fileinfo' => [
                 'renderer' => Fab\Media\Grid\PreviewRenderer::class,
@@ -89,11 +106,13 @@ $tca = [
                 'width' => '400px',
                 'editable' => true,
                 'sortable' => true,
+                'label' => 'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.title',
             ],
             'metadata.description' => [
                 'renderer' => new Fab\Media\Grid\MetadataRenderer(['property' => 'description']),
                 'visible' => false,
                 'sortable' => false,
+                'label' => 'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.description',
             ],
             'tstamp' => [
                 'visible' => false,
@@ -108,6 +127,7 @@ $tca = [
                 'editable' => true,
                 'visible' => true,
                 'sortable' => false,
+                'label' => 'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.categories',
             ],
             'usage' => [
                 'renderer' => 'Fab\Media\Grid\UsageRenderer',
@@ -116,7 +136,7 @@ $tca = [
                 'sortable' => false,
             ],
             'metadata' => [
-                'label' => 'Metadata File Identifier',
+                'label' => 'LLL:EXT:media/Resources/Private/Language/locallang.xlf:metadata.file.identifier',
                 'renderer' => new Fab\Media\Grid\MetadataRenderer(['property' => 'uid']),
                 'visible' => false,
                 'sortable' => false,
